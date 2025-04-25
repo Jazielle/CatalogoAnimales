@@ -1,36 +1,51 @@
 package com.example.catalogoanimales.model;
 
-public class Animal {
+import com.google.gson.annotations.SerializedName;
+import java.io.Serializable;
+
+public class Animal implements Serializable {
+    @SerializedName("id")
+    private int id;
+
+    @SerializedName("especie")
     private String especie;
+
+    @SerializedName("nombreCientifico")  // <-- este nombre debe coincidir con el JSON
     private String nombreCientifico;
+
+    @SerializedName("habitat")
     private String habitat;
+
+    @SerializedName("pesoPromedio")  // <-- corregido
     private double pesoPromedio;
+
+    @SerializedName("estadoConservacion")  // <-- corregido
     private String estadoConservacion;
-    private int imageResourceId;
 
-    public Animal(String especie, String nombreCientifico, String habitat, 
-                 double pesoPromedio, String estadoConservacion, int imageResourceId) {
-        this.especie = especie;
-        this.nombreCientifico = nombreCientifico;
-        this.habitat = habitat;
-        this.pesoPromedio = pesoPromedio;
-        this.estadoConservacion = estadoConservacion;
-        this.imageResourceId = imageResourceId;
-    }
+    @SerializedName("img")
+    private String img;
 
-    // Getters
+    @SerializedName("tipo")
+    private String tipoAnimal;
+
+    @SerializedName("temperaturaCorporal")
+    private double temperaturaCorporal;
+
+    @SerializedName("tiempoGestacion")
+    private int tiempoGestacion;
+
+    @SerializedName("alimentacion")
+    private String alimentacion;
+
+    public int getId() { return id; }
     public String getEspecie() { return especie; }
     public String getNombreCientifico() { return nombreCientifico; }
     public String getHabitat() { return habitat; }
     public double getPesoPromedio() { return pesoPromedio; }
     public String getEstadoConservacion() { return estadoConservacion; }
-    public int getImageResourceId() { return imageResourceId; }
-
-    // Setters
-    public void setEspecie(String especie) { this.especie = especie; }
-    public void setNombreCientifico(String nombreCientifico) { this.nombreCientifico = nombreCientifico; }
-    public void setHabitat(String habitat) { this.habitat = habitat; }
-    public void setPesoPromedio(double pesoPromedio) { this.pesoPromedio = pesoPromedio; }
-    public void setEstadoConservacion(String estadoConservacion) { this.estadoConservacion = estadoConservacion; }
-    public void setImageResourceId(int imageResourceId) { this.imageResourceId = imageResourceId; }
-} 
+    public String getImg() { return img; }
+    public String getTipoAnimal() { return tipoAnimal; }
+    public double getTemperaturaCorporal() { return temperaturaCorporal; }
+    public int getTiempoGestacion() { return tiempoGestacion; }
+    public String getAlimentacion() { return alimentacion; }
+}

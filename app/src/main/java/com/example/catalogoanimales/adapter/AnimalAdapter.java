@@ -15,9 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.catalogoanimales.DetailActivity;
 import com.example.catalogoanimales.R;
 import com.example.catalogoanimales.model.Animal;
-import com.example.catalogoanimales.model.Ave;
-import com.example.catalogoanimales.model.AveRapaz;
-import com.example.catalogoanimales.model.Mamifero;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -42,26 +40,38 @@ public class AnimalAdapter extends RecyclerView.Adapter<AnimalAdapter.ViewHolder
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Animal animal = animales.get(position);
-        
+
         holder.tvEspecie.setText(animal.getEspecie());
         holder.tvNombreCientifico.setText(animal.getNombreCientifico());
         holder.tvHabitat.setText(animal.getHabitat());
-        holder.ivAnimal.setImageResource(animal.getImageResourceId());
 
-        // Configurar el color de fondo según el tipo de animal
-        if (animal instanceof AveRapaz) {
-            holder.cardView.setCardBackgroundColor(context.getResources().getColor(R.color.colorAveRapaz));
-        } else if (animal instanceof Ave) {
-            holder.cardView.setCardBackgroundColor(context.getResources().getColor(R.color.colorAve));
-        } else if (animal instanceof Mamifero) {
-            holder.cardView.setCardBackgroundColor(context.getResources().getColor(R.color.colorMamifero));
-        } else {
-            holder.cardView.setCardBackgroundColor(context.getResources().getColor(R.color.colorDefault));
+        // Cargar imagen usando Picasso sin placeholder ni imagen de error
+        if (animal.getImg() != null && !animal.getImg().isEmpty()) {
+            Picasso.get()
+                    .load(animal.getImg())
+                    .into(holder.ivAnimal);
         }
+
+
+        // Configurar el color de fondo según el tipo de animal (verificación segura)
+        int colorResId = R.color.colorDefault;
+        String tipo = animal.getTipoAnimal();
+
+        if (tipo != null) {
+            if (tipo.equalsIgnoreCase("ave rapaz")) {
+                colorResId = R.color.colorAveRapaz;
+            } else if (tipo.equalsIgnoreCase("ave")) {
+                colorResId = R.color.colorAve;
+            } else if (tipo.equalsIgnoreCase("mamifero")) {
+                colorResId = R.color.colorMamifero;
+            }
+        }
+
+        holder.cardView.setCardBackgroundColor(context.getResources().getColor(colorResId));
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(context, DetailActivity.class);
-            intent.putExtra("position", position);
+            intent.putExtra("animal", animal);
             context.startActivity(intent);
         });
     }
