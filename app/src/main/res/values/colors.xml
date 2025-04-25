@@ -5,14 +5,15 @@
     
     <!-- Colores principales -->
     <color name="primary">#2196F3</color>
-    <color name="primary_dark">#1976D2</color>
-    <color name="accent">#FFC107</color>
+    <color name="colorPrimary">#2196F3</color>
+    <color name="colorPrimaryDark">#1976D2</color>
+    <color name="colorAccent">#FF4081</color>
 
     <!-- Colores para tipos de animales -->
-    <color name="colorMamifero">#E8F5E9</color>
-    <color name="colorAve">#FFF3E0</color>
-    <color name="colorAveRapaz">#FFE0B2</color>
-    <color name="colorDefault">#FFFFFF</color>
+    <color name="colorMamifero">#81C784</color>
+    <color name="colorAve">#64B5F6</color>
+    <color name="colorAveRapaz">#FFB74D</color>
+    <color name="colorDefault">#E0E0E0</color>
 
     <!-- Colores de texto -->
     <color name="textPrimary">#212121</color>
